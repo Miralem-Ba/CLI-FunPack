@@ -95,7 +95,7 @@ def play_hangman():
     while len(word_letters) > 0 and lives > 0:
         print(display_hangman(lives))                                                                       # Zeige aktuellen Hangman-Status
         print('You have', lives, 'lives left and you have used these letters: ', ' '.join(used_letters))
-        word_list = [letter if letter in used_letters else '-' for letter in word]                          # Aktueller Fortschritt
+        word_list = [letter if letter in used_letters else '-' for letter in word]                          
         print('Current word: ', ' '.join(word_list))
 
         user_letter = input('Guess a letter: ').lower()                                                     # Benutzer gibt einen Buchstaben ein ( .lower() ignoriert Groß- und Kleinschreibung)
@@ -123,7 +123,7 @@ def main():
     while True:
         play_hangman()
         play_again = input('Do you want to play again? (y/n): ').lower()
-        if play_again != 'y':
+        if play_again != 'y':                                                                           # hinzufügen von N als Abbruch / Gleicher Buchstabe mehrmals eingeben. /Aktueller Fortschritt  # for lop aufschreiben.
             print("Thanks for playing! Goodbye!")
             break
 
