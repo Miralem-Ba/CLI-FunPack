@@ -50,7 +50,7 @@ def select_difficulty():
     """
     Funktion, um den Schwierigkeitsgrad auszuwählen.
     """
-    print("\nChoose a level of difficulty:")
+    print("Choose a level of difficulty:")
     print("1. Simple (Unlimited attempts)")
     print("2. Medium (10 Attempts)")
     print("3. Hard (5 Attempts)")
@@ -89,11 +89,11 @@ def number_guessing_game():
     total_games, total_attempts = load_stats()
 
     if highscore is not None:
-        print(f"\n🏆 Current Highscore: {highscore} attempts")
+        print(f"🏆 Current Highscore: {highscore} attempts")
     else:
-        print("\nNo highscore yet. Be the first to set one!")
+        print("No highscore yet. Be the first to set one!")
 
-    print("\nWelcome to the guessing game!")
+    print("Welcome to the guessing game!")
     max_attempts = select_difficulty()  # Schwierigkeitsgrad wählen
     secret_number = random.randint(1, 100)  # Zufällige Zahl zwischen 1 und 100
     attempts = 0  # Zähle die Versuche des Spielers
@@ -101,7 +101,7 @@ def number_guessing_game():
     while True:
         # Wenn ein Schwierigkeitsgrad mit begrenzten Versuchen gewählt wurde
         if max_attempts is not None and attempts >= max_attempts:
-            print(f"\n❌ You have reached the maximum number of {max_attempts} attempts. The correct number was {secret_number}.")
+            print(f"❌ You have reached the maximum number of {max_attempts} attempts. The correct number was {secret_number}.")
             break
 
         guess = get_valid_number("Guess a number between 1 and 100: ", 1, 100)  # Fehlertolerante Eingabe
@@ -112,7 +112,7 @@ def number_guessing_game():
         elif guess > secret_number:
             print("📈 Too high!")
         else:
-            print(f"\n🎉 You guessed right! The number was {secret_number}. You used {attempts} attempts.")
+            print(f"🎉 You guessed right! The number was {secret_number}. You used {attempts} attempts.")
             
             # Highscore aktualisieren
             if highscore is None or attempts < highscore:
@@ -130,19 +130,19 @@ def number_guessing_game():
 
     # Statistiken anzeigen
     average_attempts = total_attempts / total_games if total_games > 0 else 0
-    print("\n📊 Game Statistics:")
+    print("📊 Game Statistics:")
     print(f"  Total games played: {total_games}")
     print(f"  Total attempts made: {total_attempts}")
     print(f"  Average attempts per game: {average_attempts:.2f}")
 
     # Nach dem Spiel fragen, ob der Benutzer noch einmal spielen möchte
     while True:
-        play_again = input("\nWould you like to play again? (y = Yes, n = No): ").lower()
+        play_again = input("Would you like to play again? (y = Yes, n = No): ").lower()
         if play_again == 'y':
             number_guessing_game()  # Starte das Spiel neu
             break
         elif play_again == 'n':
-            print("\nThanks for playing! See you next time.")
+            print("Thanks for playing! See you next time.")
             break
         else:
             print("❗ Invalid input. Please enter 'y' for yes or 'n' for no.")
