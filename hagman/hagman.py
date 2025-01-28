@@ -1,4 +1,4 @@
-#Bibiothen für zufällige wörter auszuwählen
+# Bibliothek für zufällige Wörter auswählen
 import random
 
 # Wähle ein zufälliges Wort aus der Liste
@@ -86,25 +86,39 @@ def display_hangman(lives):
 
 # Das Hauptspiel
 def play_hangman():
-    word = get_random_word()                                                                                # Zufälliges Wort
-    word_letters = set(word)                                                                                # Buchstaben des Wortes
-    alphabet = set('abcdefghijklmnopqrstuvwxyz')                                                            # Alle möglichen Buchstaben
-    used_letters = set()                                                                                    # Bereits geratene Buchstaben
-    lives = 7                                                                                               # Startanzahl der Leben
+    word = get_random_word()                                                                                                            # Zufälliges Wort
+    word_letters = set(word)                                                                                                            # Buchstaben des Wortes
+    alphabet = set('abcdefghijklmnopqrstuvwxyz')                                                                                        # Alle möglichen Buchstaben
+    used_letters = set()                                                                                                                # Bereits geratene Buchstaben
+    lives = 7                                                                                                                           # Startanzahl der Leben
 
     while len(word_letters) > 0 and lives > 0:
-        print(display_hangman(lives))                                                                       # Zeige aktuellen Hangman-Status
+        print(display_hangman(lives))                                                                                                   # Zeige aktuellen Hangman-Status
         print('You have', lives, 'lives left and you have used these letters: ', ' '.join(used_letters))
-        word_list = [letter if letter in used_letters else '-' for letter in word]                          
+        
+        # Erzeuge die Liste mit dem aktuellen Fortschritt
+        word_list = []
+        for letter in word:
+            if letter in used_letters:
+                word_list.append(letter)
+            else:
+                word_list.append('-')
+
         print('Current word: ', ' '.join(word_list))
 
-        user_letter = input('Guess a letter: ').lower()                                                     # Benutzer gibt einen Buchstaben ein ( .lower() ignoriert Groß- und Kleinschreibung)
-        if user_letter in alphabet - used_letters:
+        # Benutzer gibt einen Buchstaben ein
+        user_letter = input('Guess a letter: ').lower()
+
+        if user_letter in alphabet - used_letters:                                                                                      # Der Buchstabe wurde noch nicht geraten
             used_letters.add(user_letter)
             if user_letter in word_letters:
-                word_letters.remove(user_letter)
+                word_letters.remove(user_letter)                                                                                        # Entferne den Buchstaben aus den noch zu ratenden Buchstaben
+                
+                # Prüfe auf mehrfach vorkommende Buchstaben (z. B. `ss`)
+                if word.count(user_letter) > 1:
+                    print(f"The letter '{user_letter}' appears multiple times. Guess it again for every occurrence.")
             else:
-                lives -= 1
+                lives -= 1  # Falscher Buchstabe, ein Leben weniger
                 print('Letter is not in word.')
         elif user_letter in used_letters:
             print('You have already used that letter. Guess another letter.')
@@ -122,10 +136,17 @@ def play_hangman():
 def main():
     while True:
         play_hangman()
-        play_again = input('Do you want to play again? (y/n): ').lower()
-        if play_again != 'y':                                                                           # hinzufügen von N als Abbruch / Gleicher Buchstabe mehrmals eingeben. /Aktueller Fortschritt  # for lop aufschreiben.
-            print("Thanks for playing! Goodbye!")
-            break
+        
+        # Sicherstellen, dass nur 'y' oder 'n' akzeptiert werden
+        while True:
+            play_again = input('Do you want to play again? (y/n): ').lower()
+            if play_again == 'y':
+                break                                                                                                                   # Starte eine neue Runde
+            elif play_again == 'n':
+                print("Thanks for playing! Goodbye!")
+                return                                                                                                                  # Beende das Spiel
+            else:
+                print("Invalid input. Please enter 'y' to play again or 'n' to quit.")
 
 # Starte das Spiel
 if __name__ == '__main__':
