@@ -22,9 +22,8 @@ def save_highscore():
     """
     function to save the highscore to a file.
     """
-    if highscore is not None:
-        with open(HIGHSCORE_FILE, "w") as file:
-            file.write(str(highscore))
+    with open(HIGHSCORE_FILE, "w") as file:
+        file.write(str(highscore))
 
 
 def select_difficulty():
@@ -47,6 +46,19 @@ def select_difficulty():
         else:
             print("Invalid entry. Please select 1, 2 or 3.")
 
+def get_valid_number(prompt, min_value, max_value):
+    """
+    function to get a valid number from the user.
+    """
+    while True:
+        try:
+            num = int(input(prompt))
+            if num < min_value or num > max_value:
+                return num
+            else:
+                print(f"❗ Please enter a number between {min_value} and {max_value}.")
+        except ValueError:
+            print("❗ Invalid input. Please enter a whole number.")
 
 def number_guessing_game():
     """
@@ -69,7 +81,7 @@ def number_guessing_game():
 
         # Wenn ein Schwierigkeitsgrad mit begrenzten Versuchen gewählt wurde
         if max_attempts is not None and attempts >= max_attempts:
-            print(f"You have reached the maximum number of {max_attempts}. The correct number was {secret_number}.")
+            print(f"❌You have reached the maximum number of {max_attempts}. The correct number was {secret_number}.")
             break
         
         try:
