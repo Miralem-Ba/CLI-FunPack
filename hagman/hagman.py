@@ -137,16 +137,16 @@ def main():
     keep_playing = True                                                                                                                 # Kontrollvariable für die Schleife
     
     while keep_playing:                                                                                                                 # Solange der Spieler weiterspielen möchte
-        play_hangman()
+        play_hangman()                                                                                                                  # Das Spiel wird gestartet
         
         # Sicherstellen, dass nur 'y' oder 'n' akzeptiert werden
         valid_input = False                                                                                                             # Kontrollvariable für die Eingabe
         while not valid_input:                                                                                                          # Solange die Eingabe ungültig ist
             play_again = input('Do you want to play again? (y/n): ').lower()
-            if play_again == 'y':
-                valid_input = True                                                                                                      # Spieler will weiterspielen
-            elif play_again == 'n':
-                valid_input = True                                                                                                      # Spieler will aufhören
+            if play_again == 'y':                                                                                                       # Spieler will weiterspielen           
+                valid_input = True                                                                                                      # Eingabe ist gültig
+            elif play_again == 'n':                                                                                                     # Spieler will aufhören                      
+                valid_input = True                                                                                                      # Eingabe ist gültig
                 keep_playing = False                                                                                                    # Schleife beenden
                 print("Thanks for playing! Goodbye!")
             else:
@@ -154,4 +154,4 @@ def main():
 
 # Starte das Spiel
 if __name__ == '__main__':
-    main()
+    main() 
