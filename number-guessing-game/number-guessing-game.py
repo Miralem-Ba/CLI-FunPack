@@ -1,5 +1,8 @@
 import random
 
+# Variable, um den Highscore zu speichern
+highscore = None
+
 def select_difficulty():
     """
     function to select the difficulty level.
@@ -24,6 +27,8 @@ def number_guessing_game():
     """
     Main game of the number guessing game with difficulty levels.
     """
+
+    global highscore                                                                                                                    # Zugriff auf die globale Variable
     print("Welcome to the guessing game!")
     max_attempts = select_difficulty()                                                                                                  # Schwierigkeitsgrad wählen
     secret_number = random.randint(1, 100)                                                                                              # Zufällige Zahl zwischen 1 und 100
@@ -49,7 +54,15 @@ def number_guessing_game():
                 print("To high!")
             else:
                 print(f"You guessed right! You used {attempts} attempts.")
+
+                # Highscore aktualisieren
+                if highscore is None or attempts < highscore:
+                    highscore = attempts
+                    print(f"New highscore! You set the record with {attempts} attempts.")
+                else:
+                    print(f"The current highscore is {highscore} attempts.")
                 break
+            
         except ValueError:
             print("Invalid input. Please enter a whole number.")
 
