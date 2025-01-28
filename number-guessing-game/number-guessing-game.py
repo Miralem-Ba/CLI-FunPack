@@ -6,9 +6,6 @@ HIGHSCORE_FILE = "highscore.txt"
 STATS_FILE = "stats.txt"
 
 def load_highscore():
-    """
-    Funktion, um den Highscore aus der Datei zu laden.
-    """
     if os.path.exists(HIGHSCORE_FILE):
         with open(HIGHSCORE_FILE, "r") as file:
             try:
@@ -18,16 +15,10 @@ def load_highscore():
     return None
 
 def save_highscore(highscore):
-    """
-    Funktion, um den Highscore in eine Datei zu speichern.
-    """
     with open(HIGHSCORE_FILE, "w") as file:
         file.write(str(highscore))
 
 def load_stats():
-    """
-    Funktion, um die Statistiken aus der Datei zu laden.
-    """
     if os.path.exists(STATS_FILE):
         with open(STATS_FILE, "r") as file:
             try:
@@ -40,16 +31,10 @@ def load_stats():
     return 0, 0
 
 def save_stats(total_games, total_attempts):
-    """
-    Funktion, um die Statistiken in eine Datei zu speichern.
-    """
     with open(STATS_FILE, "w") as file:
         file.write(f"{total_games},{total_attempts}")
 
 def select_difficulty():
-    """
-    Funktion, um den Schwierigkeitsgrad auszuwählen.
-    """
     print("Choose a level of difficulty:")
     print("1. Simple (Unlimited attempts)")
     print("2. Medium (10 Attempts)")
@@ -58,18 +43,15 @@ def select_difficulty():
     while True:
         difficulty = input("Enter the difficulty level number (1/2/3): ")
         if difficulty == '1':
-            return None  # Unbegrenzte Versuche
+            return None                                                                                                         # Unbegrenzte Versuche
         elif difficulty == '2':
-            return 10  # 10 Versuche
+            return 10                                                                                                           # 10 Versuche
         elif difficulty == '3':
-            return 5  # 5 Versuche
+            return 5                                                                                                            # 5 Versuche
         else:
             print("❗ Invalid entry. Please select 1, 2, or 3.")
 
 def get_valid_number(prompt, min_value, max_value):
-    """
-    Funktion, um eine gültige Zahl vom Benutzer zu erhalten.
-    """
     while True:
         try:
             num = int(input(prompt))
@@ -94,9 +76,9 @@ def number_guessing_game():
         print("No highscore yet. Be the first to set one!")
 
     print("Welcome to the guessing game!")
-    max_attempts = select_difficulty()  # Schwierigkeitsgrad wählen
-    secret_number = random.randint(1, 100)  # Zufällige Zahl zwischen 1 und 100
-    attempts = 0  # Zähle die Versuche des Spielers
+    max_attempts = select_difficulty()                                                                                              # Schwierigkeitsgrad wählen
+    secret_number = random.randint(1, 100)                                                                                          # Zufällige Zahl zwischen 1 und 100
+    attempts = 0                                                                                                                    # Zähle die Versuche des Spielers
 
     while True:
         # Wenn ein Schwierigkeitsgrad mit begrenzten Versuchen gewählt wurde
@@ -104,7 +86,7 @@ def number_guessing_game():
             print(f"❌ You have reached the maximum number of {max_attempts} attempts. The correct number was {secret_number}.")
             break
 
-        guess = get_valid_number("Guess a number between 1 and 100: ", 1, 100)  # Fehlertolerante Eingabe
+        guess = get_valid_number("Guess a number between 1 and 100: ", 1, 100)                                                      # Fehlertolerante Eingabe
         attempts += 1  # Zähle die Versuche
 
         if guess < secret_number:
@@ -139,7 +121,7 @@ def number_guessing_game():
     while True:
         play_again = input("Would you like to play again? (y = Yes, n = No): ").lower()
         if play_again == 'y':
-            number_guessing_game()  # Starte das Spiel neu
+            number_guessing_game()                                                                                                  # Starte das Spiel neu
             break
         elif play_again == 'n':
             print("Thanks for playing! See you next time.")
@@ -147,5 +129,82 @@ def number_guessing_game():
         else:
             print("❗ Invalid input. Please enter 'y' for yes or 'n' for no.")
 
-# Spiel starten
-number_guessing_game()
+def multiplayer_mode():
+    """
+    Multiplayer-Modus für das Zahlraten-Spiel
+    """
+    print("🎮 Welcome to Multiplayer Mode!")
+    num_players = get_valid_number("Enter the number of players (2-10): ", 2, 10)
+    
+    player_names = []
+    for i in range(1, num_players + 1):
+        name = input(f"Enter the name of Player {i}: ")
+        player_names.append(name)
+    
+    secret_number = random.randint(1, 100)
+    max_attempts = select_difficulty()
+    scores = {name: 0 for name in player_names}                                                                                     # Spieler-Scores
+
+    attempts = 0
+    current_player_index = 0
+
+    while True:
+        # Maximal erlaubte Versuche überprüfen
+        if max_attempts is not None and attempts >= max_attempts * len(player_names):
+            print(f"❌ No one guessed the number. The correct number was {secret_number}.")
+            break
+
+        current_player = player_names[current_player_index]
+        print(f"\nIt's {current_player}'s turn!")
+        guess = get_valid_number("Guess a number between 1 and 100: ", 1, 100)
+        attempts += 1
+        scores[current_player] += 1                                                                                                 # Versuch für den aktuellen Spieler zählen
+
+        if guess < secret_number:
+            print("📉 Too low!")
+        elif guess > secret_number:
+            print("📈 Too high!")
+        else:
+            print(f"🎉 {current_player} guessed right! The number was {secret_number}.")
+            print(f"{current_player} won in {scores[current_player]} attempts!")
+            break
+
+        # Zum nächsten Spieler wechseln
+        current_player_index = (current_player_index + 1) % len(player_names)
+
+    print("\n📊 Final Scores:")
+    for name, score in scores.items():
+        print(f"  {name}: {score} attempts")
+
+    # Wieder spielen
+    while True:
+        play_again = input("Would you like to play again? (y = Yes, n = No): ").lower()
+        if play_again == 'y':
+            multiplayer_mode()
+            break
+        elif play_again == 'n':
+            print("Thanks for playing! See you next time.")
+            break
+        else:
+            print("❗ Invalid input. Please enter 'y' for yes or 'n' for no.")
+
+def main_menu():
+    """
+    Zeigt das Hauptmenü zur Auswahl des Spielmodus.
+    """
+    print("Welcome to the Number Guessing Game!")
+    print("1. Play alone")
+    print("2. Play multiplayer")
+    while True:
+        choice = input("Select an option (1/2): ")
+        if choice == '1':
+            number_guessing_game()                                                                                                      # Einspieler-Modus
+            break
+        elif choice == '2':
+            multiplayer_mode()                                                                                                          # Multiplayer-Modus
+            break
+        else:
+            print("❗ Invalid option. Please select 1 or 2.")
+
+# Hauptmenü starten
+main_menu()
