@@ -90,7 +90,7 @@ def play_hangman():
     word_letters = set(word)                                                                                # Buchstaben des Wortes
     alphabet = set('abcdefghijklmnopqrstuvwxyz')                                                            # Alle möglichen Buchstaben
     used_letters = set()                                                                                    # Bereits geratene Buchstaben
-    lives = 6                                                                                               # Startanzahl der Leben
+    lives = 7                                                                                               # Startanzahl der Leben
 
     while len(word_letters) > 0 and lives > 0:
         print(display_hangman(lives))                                                                       # Zeige aktuellen Hangman-Status
