@@ -39,3 +39,6 @@ while True:
     elif wahl == "4":
         print("👋 Programm beendet. Bis bald!")
         break
+
+    else:
+        print("❌ Ungültige Eingabe. Bitte wähle 1-4.")
