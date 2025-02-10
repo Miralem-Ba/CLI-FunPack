@@ -2,3 +2,9 @@ import random                                                   # Importiert das
 
 # Definiert die Optionen des Spiels
 optionen = ["Stein", "Papier", "Schere"]
+
+# Benutzerwahl
+benutzer_wahl = input("Wähle Stein, Papier oder Schere: ").capitalize()
+
+# Computerauswahl
+computer_wahl = random.choice(optionen)
