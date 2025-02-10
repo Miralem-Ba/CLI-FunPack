@@ -23,4 +23,16 @@ while True:
         else:
             for index, aufgabe in enumerate(todo_liste, start=1):
                 print(f"{index}. {aufgabe}")
-                
+        
+    elif wahl == "3":
+        print("Deine To-Do-List:")
+        for index, aufgabe in enumerate(todo_liste, start=1):
+            print(f"{index}. {aufgabe}")
+
+            nummer = int(input("Welche Aufgabe möchtest du entfernen? (Nummer eingeben): ")) -1
+            if 0 <= nummer < len(todo_liste):
+                entferne_aufgabe = todo_liste.pop(nummer)
+                print(f"❌ '{entferne_aufgabe}' wurde entfernt.")
+            else:
+                print("Ungültige Nummer.")
+    
