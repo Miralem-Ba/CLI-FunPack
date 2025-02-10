@@ -11,4 +11,8 @@ while True:
 
     wahl = input("Wähle eine Option (1-4): ")
 
+    if wahl == "1":
+        aufgabe = input("Gib die neue Aufgabe ein: ")
+        todo_liste.append(aufgabe)
+        print(f"✅ '{aufgabe}' wurde hinzugefügt.")
 
