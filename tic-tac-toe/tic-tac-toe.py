@@ -24,3 +24,28 @@ def frage_nach_zug(brett, symbol):
                 break
         except ValueError:
             print("Ungültige Eingabe. Bitte gib eine Zahl ein.")
+
+# Überprüfen, ob ein Spieler gewonnen hat
+def tictactoe():
+    brett = [[" " for _ in range(3)] for _ in range(3)]  # Das Spielfeld initialisieren
+    spieler = "X"  # Spieler X beginnt
+
+    drucke_brett(brett)
+
+    for zug in range(9):
+        frage_nach_zug(brett, spieler)
+        drucke_brett(brett)
+
+        # Überprüfen, ob der aktuelle Spieler gewonnen hat
+        if pruefe_gewinner(brett, spieler):
+            print(f"Spieler {spieler} hat gewonnen! 🎉")
+            break
+
+        # Wechsel zum anderen Spieler
+        spieler = "O" if spieler == "X" else "X"
+
+    else:
+        print("Das Spiel endet unentschieden! 👾")
+
+# Das Spiel starten
+tictactoe()
