@@ -16,3 +16,11 @@ while True:
         todo_liste.append(aufgabe)
         print(f"✅ '{aufgabe}' wurde hinzugefügt.")
 
+    elif wahl == "2":
+        print("Deine To-Do-List:")
+        if not todo_liste:
+            print("(Keine Aufgaben)")
+        else:
+            for index, aufgabe in enumerate(todo_liste, start=1):
+                print(f"{index}. {aufgabe}")
+                
