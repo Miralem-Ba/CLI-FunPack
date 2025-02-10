@@ -1,5 +1,7 @@
-import random                                   # Bibliothek für Zufallszahlen
+# Description: A simple dice simulator that simulates a dice roll with a random number between 1 and 6.
+import random
 
+# Unicode characters for dice faces
 wuerfel = {
     1: "⚀",
     2: "⚁",
@@ -9,16 +11,15 @@ wuerfel = {
     6: "⚅"
 }
 
-# Schleife, die so lange läuft, bis der Benutzer [q] eingibt
+# Main loop
 while True:
-    input("Drücke [Enter] um zu würfeln oder [q] zum Beenden.")
-
-    # Wenn der Benutzer [q] eingibt, wird die Schleife beendet
-    if input == "q":
+    eingabe = input("Drücke [Enter] zum Würfeln oder 'q' zum Beenden: ").lower()
+    
+    # Exit the program
+    if eingabe == "q":
         print("👋 Tschüss! Bis zum nächsten Mal.")
         break
 
-# Eine Zufallszahl zwischen 1 und 6 generieren
+# Roll the dice
     zahl = random.randint(1, 6)
-
     print(f"🎲 Du hast eine {zahl} gewürfelt! {wuerfel[zahl]}")
