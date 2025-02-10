@@ -33,7 +33,11 @@ def word_scramble():
         else:
             print(f"❌ Falsch! Das richtige Wort war: {wort}")
         
-
+        # Nochmal spielen?
+        nochmal = input("🔄 Nochmal spielen? (ja/nein): ").strip().lower()
+        if nochmal != "ja":
+            print(f"🏆 Du hast {punkte} Punkte erzielt. Danke fürs Spielen!")
+            break
 
 # Spiel starten
 word_scramble()
