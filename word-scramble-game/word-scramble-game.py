@@ -14,4 +14,10 @@ def word_scramble():
     woerter = ["python", "spiel", "computer", "programm", "entwickler", "lernen", "spass", "code"]  # Liste mit Wörtern
     punkte = 0                                                                                      # Punktestand                                                                 
     
-    
+    # Spielablauf
+    while True:
+        # Zufälliges Wort auswählen
+        wort = random.choice(woerter)                                                               # Zufälliges Wort auswählen
+        gemischtes_wort = mische_wort(wort)                                                         # Wort mischen
+        
+        
