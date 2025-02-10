@@ -20,4 +20,8 @@ def word_scramble():
         wort = random.choice(woerter)                                                               # Zufälliges Wort auswählen
         gemischtes_wort = mische_wort(wort)                                                         # Wort mischen
         
+        # Spieler-Eingabe
+        print(f"🔀 Errate das Wort: {gemischtes_wort}")                                             # Gemischtes Wort Erraten
+        eingabe = input("Dein Tipp: ").strip().lower()                                              # Spieler-Eingabe
+        
         
