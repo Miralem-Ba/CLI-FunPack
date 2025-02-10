@@ -24,4 +24,9 @@ def word_scramble():
         print(f"🔀 Errate das Wort: {gemischtes_wort}")                                             # Gemischtes Wort Erraten
         eingabe = input("Dein Tipp: ").strip().lower()                                              # Spieler-Eingabe
         
+        # Richtige Antwort
+        if eingabe == wort:
+            print("✅ Richtig! Du bekommst einen Punkt.")
+            punkte += 1
+
         
