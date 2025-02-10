@@ -8,3 +8,10 @@ def mische_wort(wort):
     random.shuffle(buchstaben)                                                                      # Buchstaben mischen
     return ''.join(buchstaben)                                                                      # Gemischte Buchstaben wieder zu einem Wort zusammenfügen
 
+# Hauptfunktion für das Word Scramble Game
+def word_scramble():
+    """Hauptfunktion für das Word Scramble Game"""
+    woerter = ["python", "spiel", "computer", "programm", "entwickler", "lernen", "spass", "code"]  # Liste mit Wörtern
+    punkte = 0                                                                                      # Punktestand                                                                 
+    
+    
