@@ -29,4 +29,11 @@ def word_scramble():
             print("✅ Richtig! Du bekommst einen Punkt.")
             punkte += 1
 
+        # Falsche Antwort
+        else:
+            print(f"❌ Falsch! Das richtige Wort war: {wort}")
         
+
+
+# Spiel starten
+word_scramble()
