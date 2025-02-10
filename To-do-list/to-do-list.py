@@ -35,4 +35,7 @@ while True:
                 print(f"❌ '{entferne_aufgabe}' wurde entfernt.")
             else:
                 print("Ungültige Nummer.")
-    
+
+    elif wahl == "4":
+        print("👋 Programm beendet. Bis bald!")
+        break
