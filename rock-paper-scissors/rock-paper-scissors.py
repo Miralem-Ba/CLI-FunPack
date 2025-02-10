@@ -41,7 +41,7 @@ while True:
     print(ergebnis)
 
     # Option, um nochmal zu spielen
-    nochmal = input("\nMöchtest du nochmal spielen? (ja/nein): ").lower()
+    nochmal = input("Möchtest du nochmal spielen? (ja/nein): ").lower()
     if nochmal != "ja":
         print("Danke fürs Spielen! 👋")
         break
