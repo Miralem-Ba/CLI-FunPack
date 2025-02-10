@@ -40,3 +40,25 @@ fragen = [
         "korrekte_antwort": "86400"
     }
 ]
+
+# Punktzahl
+punktzahl = 0
+
+# Fragen durchgehen
+for frage in fragen:
+    print(frage["frage"])
+    for idx, antwort in enumerate(frage["antworten"], 1):
+        print(f"{idx}. {antwort}")
+
+    # Benutzerantwort eingeben
+    benutzer_antwort = input("Wähle die Nummer der richtigen Antwort: ")
+
+    # Überprüfen, ob die Antwort korrekt ist
+    if frage["antworten"][int(benutzer_antwort) - 1] == frage["korrekte_antwort"]:
+        print("✔️ Richtig!")
+        punktzahl += 1
+    else:
+        print(f"❌ Falsch! Die richtige Antwort ist: {frage['korrekte_antwort']}")
+
+# Am Ende die Punktzahl anzeigen
+print(f"Deine Punktzahl: {punktzahl}/{len(fragen)}")
