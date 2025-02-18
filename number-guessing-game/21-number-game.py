@@ -25,3 +25,12 @@ def get_player_input(player, last):
     print(f"{player} hat eingegeben:", numbers)
     return numbers
 
+def computer_turn(last):
+    """Berechnet die optimale Eingabe des Computers"""
+    near = nearest_multiple_of_4(last)
+    count = near - last if 1 <= near - last <= 3 else random.randint(1, 3)
+    numbers = list(range(last + 1, last + 1 + count))
+    print("Der Computer hat eingegeben:", numbers)
+    return numbers
+
+
