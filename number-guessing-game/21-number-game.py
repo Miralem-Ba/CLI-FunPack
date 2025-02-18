@@ -10,3 +10,18 @@ def lose(player):
     print("Besseres Glück beim nächsten Mal!")
     exit(0)
 
+def get_player_input(player, last):
+    """Fragt den Spieler, wie viele Zahlen er eingeben möchte"""
+    while True:
+        try:
+            count = int(input(f"{player}, wie viele Zahlen möchtest du eingeben? (1-3) > "))
+            if 1 <= count <= 3:
+                break
+            print("Bitte gib eine Zahl zwischen 1 und 3 ein.")
+        except ValueError:
+            print("Ungültige Eingabe! Bitte eine Zahl zwischen 1 und 3 eingeben.")
+
+    numbers = list(range(last + 1, last + 1 + count))
+    print(f"{player} hat eingegeben:", numbers)
+    return numbers
+
