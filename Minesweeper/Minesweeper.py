@@ -15,4 +15,10 @@ class Minesweeper:
         self.calculate_numbers()
         self.create_widgets()
     
-   
+    def place_mines(self):
+        positions = random.sample(range(self.size * self.size), self.mines)
+        for pos in positions:
+            row, col = divmod(pos, self.size)
+            self.board[row][col] = -1
+    
+    
