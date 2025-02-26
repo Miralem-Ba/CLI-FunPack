@@ -44,3 +44,9 @@ def draw_grid():
             pygame.draw.rect(win, field[y][x], (x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
             pygame.draw.rect(win, WHITE, (x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE), 1)
 
+def draw_piece(piece):
+    for i, row in enumerate(piece['shape']):
+        for j, cell in enumerate(row):
+            if cell:
+                pygame.draw.rect(win, piece['color'], ((piece['x'] + j) * BLOCK_SIZE, (piece['y'] + i) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
+
