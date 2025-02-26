@@ -34,4 +34,11 @@ class Minesweeper:
                             count += 1
                 self.board[row][col] = count
     
+    def create_widgets(self):
+        for row in range(self.size):
+            for col in range(self.size):
+                btn = tk.Button(self.master, width=3, height=1, command=lambda r=row, c=col: self.reveal(r, c))
+                btn.grid(row=row, column=col)
+                self.buttons[row][col] = btn
+    
     
