@@ -24,3 +24,8 @@ SHAPES = [
     [[0, 0, 1], [1, 1, 1]],  # L-Form
 ]
 
+# Initialisierung des Spielfelds
+field = [[BLACK for _ in range(COLUMNS)] for _ in range(ROWS)]
+
+
+
