@@ -27,5 +27,8 @@ SHAPES = [
 # Initialisierung des Spielfelds
 field = [[BLACK for _ in range(COLUMNS)] for _ in range(ROWS)]
 
-
+# Fenster erstellen
+win = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Tetris")
+clock = pygame.time.Clock()
 
