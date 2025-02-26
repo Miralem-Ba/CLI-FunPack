@@ -32,3 +32,9 @@ win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Tetris")
 clock = pygame.time.Clock()
 
+# Zufällige Form generieren
+def new_piece():
+    shape = random.choice(SHAPES)
+    color = random.choice(COLORS)
+    return {'shape': shape, 'color': color, 'x': COLUMNS // 2 - len(shape[0]) // 2, 'y': 0}
+
