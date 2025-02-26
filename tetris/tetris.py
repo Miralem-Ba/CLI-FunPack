@@ -38,3 +38,9 @@ def new_piece():
     color = random.choice(COLORS)
     return {'shape': shape, 'color': color, 'x': COLUMNS // 2 - len(shape[0]) // 2, 'y': 0}
 
+def draw_grid():
+    for y in range(ROWS):
+        for x in range(COLUMNS):
+            pygame.draw.rect(win, field[y][x], (x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
+            pygame.draw.rect(win, WHITE, (x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE), 1)
+
