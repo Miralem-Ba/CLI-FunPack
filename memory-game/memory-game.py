@@ -14,3 +14,21 @@ COLORS = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (255, 165, 0), (
 COLORS *= 2
 random.shuffle(COLORS)
 
+# Fenster erstellen
+win = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Memory Game")
+
+tiles = []
+revealed = []
+selected = []
+
+for i in range(GRID_SIZE):
+    row = []
+    reveal_row = []
+    for j in range(GRID_SIZE):
+        row.append(COLORS.pop())
+        reveal_row.append(False)
+    tiles.append(row)
+    revealed.append(reveal_row)
+
+
