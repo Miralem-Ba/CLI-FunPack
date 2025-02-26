@@ -54,3 +54,29 @@ def move_piece(piece, dx, dy):
     piece['x'] += dx
     piece['y'] += dy
 
+def game_loop():
+    running = True
+    piece = new_piece()
+    
+    while running:
+        win.fill(BLACK)
+        draw_grid()
+        draw_piece(piece)
+        pygame.display.update()
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    move_piece(piece, -1, 0)
+                if event.key == pygame.K_RIGHT:
+                    move_piece(piece, 1, 0)
+                if event.key == pygame.K_DOWN:
+                    move_piece(piece, 0, 1)
+        
+        pygame.time.delay(500)
+    
+    pygame.quit()
+
+game_loop()
