@@ -52,4 +52,27 @@ def check_match():
         else:
             return False
 
-
+running = True
+while running:
+    draw_tiles()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.MOUSEBUTTONDOWN and len(selected) < 2:
+            x, y = event.pos
+            row, col = y // TILE_SIZE, x // TILE_SIZE
+            if not revealed[row][col]:
+                revealed[row][col] = True
+                selected.append((row, col))
+    
+    if len(selected) == 2:
+        draw_tiles()
+        pygame.time.delay(1000)
+        if not check_match():
+            r1, c1 = selected[0]
+            r2, c2 = selected[1]
+            revealed[r1][c1] = False
+            revealed[r2][c2] = False
+        selected.clear()
+    
+pygame.quit()
