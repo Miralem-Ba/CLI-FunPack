@@ -21,4 +21,17 @@ class Minesweeper:
             row, col = divmod(pos, self.size)
             self.board[row][col] = -1
     
+    def calculate_numbers(self):
+        for row in range(self.size):
+            for col in range(self.size):
+                if self.board[row][col] == -1:
+                    continue
+                count = 0
+                for i in [-1, 0, 1]:
+                    for j in [-1, 0, 1]:
+                        r, c = row + i, col + j
+                        if 0 <= r < self.size and 0 <= c < self.size and self.board[r][c] == -1:
+                            count += 1
+                self.board[row][col] = count
+    
     
