@@ -50,3 +50,7 @@ def draw_piece(piece):
             if cell:
                 pygame.draw.rect(win, piece['color'], ((piece['x'] + j) * BLOCK_SIZE, (piece['y'] + i) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
 
+def move_piece(piece, dx, dy):
+    piece['x'] += dx
+    piece['y'] += dy
+
